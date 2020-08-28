@@ -1,0 +1,13 @@
+table {
+	margin: 0 0 .5em;
+	width: 100%;
+}
+@media screen and (max-width: $query__small) {
+	tr {
+		display: block;
+	}
+	td {
+		display: block;
+		clear: both;
+	}
+}

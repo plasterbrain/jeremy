@@ -1,0 +1,51 @@
+embed,
+iframe,
+object {
+	max-width: 100%;
+}
+a>img {
+	display: block; // Remove wonky extra spacing 
+}
+img[src$=".svg"], img[srcset$=".svg"] {
+	display: inline;
+	vertical-align: middle;
+}
+.featured-img {
+	height: 250px;
+	margin: 0;
+	object-fit: cover;
+	width: 100%;
+}
+figure {
+	background: $color__caption;
+	border: 1px solid $color__caption-border;
+	margin-bottom: 1.5em;
+	margin-top: 0;
+	padding: 8px;
+	figcaption {
+		@include font-size(.8);
+		line-height: 1.5em;
+		padding: 8px 0 0;
+		text-align: center;
+	}
+	img {
+		width: 100%;
+	}
+}
+.alignleft {
+	float: left;
+	margin: 0 1.5em 1.5em 0;
+}
+.alignright {
+	float: right;
+	margin: 0 0 1.5em 1.5em;
+}
+.aligncenter {
+	clear: both;
+	@include center-block;
+}
+
+/*--------------------------------------------------------------
+## Galleries
+--------------------------------------------------------------*/
+@import "galleries";

@@ -1,0 +1,56 @@
+html {
+	background: $color__background;
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+.site {
+	background: $color__background-body;
+}
+
+a {
+	color: $color__secondary;
+	text-decoration: none;
+	&:visited {
+		color: $color__primary;
+		&:hover,
+		&:focus,
+		&:active {
+			color: $color__primary-dark;
+		}
+	}
+	&:hover,
+	&:focus,
+	&:active {
+		color: $color__secondary-dark;
+	}
+}
+
+blockquote, q {
+	color: $color__primary-dark;
+	@include font-size(1.5);
+	quotes: "" "";
+	text-align: center;
+
+	&:before,
+	&:after {
+		content: "";
+	}
+}
+
+hr {
+	background-color: $color__background-hr;
+	border: 0;
+	height: 1px;
+}
+
+img {
+	height: auto; /* Make sure images are scaled correctly. */
+	max-width: 100%; /* Adhere to container width. */
+}
+@import "tables";

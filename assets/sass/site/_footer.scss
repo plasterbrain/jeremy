@@ -1,0 +1,41 @@
+footer {    
+    clear: both;
+}
+.site-footer {
+    a {
+        color: $color__footer-links;
+        &:hover, &:focus, &:active {
+            color: darken($color__footer-links, 20%);
+        }
+    }
+    .footer-widgets {
+        background: $color__footer-widgets;
+        color: $color__footer-widgets-text;
+        border-top: 3px solid $color__primary-light;
+    }
+    .footer-copyright {
+        background: $color__black;
+        color: $color__white;
+        @include font-size(.8);
+        justify-content: space-between;
+        padding: 1em;
+        text-align: right;
+        a { color: $color__secondary-light; }
+        p { margin: 0; }
+    }
+}
+
+.footer-widgets {
+	@media screen and (max-width: $query__small) {
+		justify-content: space-around;
+		.widget-name {
+			text-align: center;
+		}
+    }
+    label {
+        color: white;
+    }
+	section {
+        padding: 1em;
+	}
+}
