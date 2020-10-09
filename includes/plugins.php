@@ -26,7 +26,7 @@ require $jeremy_directory . '/includes/plugins-jetpack.php';
  * Event Organiser Compatibility
  * @since 2.0.0
  */
-require $jeremy_directory . '/includes/plugins-eventOrganiser.php';
+require $jeremy_directory . '/includes/plugins-eventorganiser.php';
 
 /**
  * [jeremy_shortcode_override description]
