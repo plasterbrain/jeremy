@@ -112,6 +112,7 @@ if ( defined( 'THE_SEO_FRAMEWORK_VERSION' ) ) {
 } else{
 	add_filter( 'document_title_parts', function( $title ) {
 		$title['title'] = jeremy_filter_page_title( $title['title'] );
+		return $title;
 	} );
 }
 
