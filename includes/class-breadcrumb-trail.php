@@ -222,7 +222,7 @@ class Jeremy_Breadcrumbs {
 				$cat_value = xprofile_get_field( xprofile_get_field_id_from_name( $cat_field ), bp_displayed_user_id() );
 				
 				if ( $cat_value && ! empty( $cat_value->data->value ) ) {
-					$this->items[$cat_value->data->value] = add_query_arg( jeremy_bp_cat_query(), sanitize_title( $cat_value->data->value ), bp_get_members_directory_permalink() );
+					$this->items[$cat_value->data->value] = add_query_arg( jeremy_bp_cat_query(), urlencode( $cat_value->data->value ), bp_get_members_directory_permalink() );
 				}
 			}
 			
