@@ -38,13 +38,18 @@ get_header(); ?>
 					
 					if ( $posts ) {
 						foreach ( $posts as $post ) {
+							$permalink = get_the_permalink();
 							$sticky_post[] = $post->ID; ?>
 							<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry-post' );?>>
 								<?php if ( has_post_thumbnail() ) { ?>
-									<div class="entry__thumb" style="background-image:url('<?php echo esc_url( get_the_post_thumbnail_url() ); ?>');" role="presentation"></div>
+									<a href="<?php echo esc_url( $permalink ); ?>">
+										<div class="entry__thumb" style="background-image:url('<?php echo esc_url( get_the_post_thumbnail_url() ); ?>');" role="presentation"></div>
+									</a>
 								<?php } ?>
 								<h3 class="entry__title">
-									<?php echo get_the_title( $post ); ?>
+									<a href="<?php echo esc_url( $permalink ); ?>">
+										<?php echo get_the_title( $post ); ?>
+									</a>
 								</h3>
 								<p class="entry__meta-time"><time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo get_the_date( '', $post ); ?></time></p>
 								<?php echo jeremy_get_the_excerpt( array(
