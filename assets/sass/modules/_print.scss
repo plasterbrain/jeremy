@@ -1,0 +1,58 @@
+/*
+ * Print Styles
+ *
+ * Description: Makes the site look good on paper.
+ * Version: 1.0.0
+ * License: GPL 3.0 or later
+ */
+
+@media print {
+	html {
+		font-size: 100%;
+	}
+
+	.nav-top,
+	.nav-main,
+	.nav-footer,
+	.nav-breadcrumbs,
+	.nav__list-edit,
+	.pagination,
+	.widget_nav_menu,
+	.sidebar,
+	button,
+	.entry__divider,
+	.entry__share-title,
+	.shariff ul {
+		display: none !important;
+	}
+
+	h1 {
+		font-size: ms(5);
+	}
+
+	.header__branding {
+		justify-content: center;
+
+		.custom-logo {
+			max-width: 300px;
+		}
+	}
+
+	.site__content {
+		padding: 0 0 2rem;
+	}
+
+	.entry__meta {
+		margin: 0 0 1rem;
+	}
+
+	.coolbox {
+		background: none;
+		border: 0;
+		padding: 0;
+	}
+
+	.eo-venue-map {
+		height: 400px !important;
+	}
+}

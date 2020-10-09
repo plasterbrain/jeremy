@@ -1,6 +1,6 @@
 <?php
 /**
- * BuddyPress single user page
+ * BuddyPress - Members Single Profile Index
  * 
  * A template which sets up a single BuddyPress user page and calls the various
  * partials and actions required to render its content.
@@ -9,100 +9,86 @@
  * @subpackage BuddyPress
  * @since 1.0.0
  */
+
 get_header(); ?>
-<div id="primary" class="content-area">
-    <?php jeremy_breadcrumbs(); ?>
-    <main id="main" class="site-main">
-        <article class="profile">
-            <header class="profile-header">
-                <?php
-                // Use the cover image header template if cover images are enabled
-                if ( bp_displayed_user_use_cover_image_header() ) {
-                    bp_get_template_part( 'members/single/cover-image-header' );
-                } else {
-                    bp_get_template_part( 'members/single/member-header' );
-                }
-                
-                bp_nav_menu( array(
-                    'container' => 'nav',
-                    'container_class' => 'profile-nav',
-                    'depth' => 1,
-                    'items_wrap' => '<ul class="%2$s">%3$s</ul>',
-                    'walker' => new Jeremy_Walker_BP_Nav_Menu,
-                ) );
-                ?>
-            </header><!-- .entry-header -->
-            <?php $class = bp_is_user_front() ? 'profile-content profile-fields' : 'profile-content'; ?>
-            <div class="<?php echo $class; ?>">
-                <?php
-                /** This action is documented in bp-templates/bp-legacy/buddypress/activity/index.php */
-                do_action( 'template_notices' );
-    
-                /**
-                 * Fires before the display of member home content.
-                 *
-                 * @since 1.2.0
-                 */
-                do_action( 'bp_before_member_home_content' );
-                
-                /**
-                 * Fires before the display of member body content.
-                 *
-                 * @since 1.2.0
-                 */
-                do_action( 'bp_before_member_body' );
+	<?php do_action( 'template_notices' ); ?>
 
-                if ( bp_is_user_front() ) :
-                    bp_displayed_user_front_template_part();
+	<?php if ( ! jeremy_bp_is_public_profile() ) { ?>
+		<?php
+		if ( jeremy_bp_is_editor() && bp_is_user_profile() )  {
+			// Edit Profile
+			bp_get_template_part( 'members/single/profile' );
+		} elseif ( bp_is_user_settings() ) {
+			// Account settings
+			bp_get_template_part( 'members/single/settings' );
+		} elseif ( bp_is_user_messages() ) {
+			// PM Inbox
+			bp_get_template_part( 'members/single/messages' );
+		} elseif ( bp_is_user_notifications() ) {
+			// Notifications
+			bp_get_template_part( 'members/single/notifications' );
+		}
+		return;
+	} ?>
+	
+	<article class="main__page-noflex profile">
+		<div class="main__page-noflex__content" role="presentation">
+			<?php jeremy_breadcrumbs(); ?>
 
-                elseif ( bp_is_user_activity() ) :
-                    bp_get_template_part( 'members/single/activity' );
+			<?php do_action( 'bp_before_member_header' ); ?>
+			
+			<div class="profile__avatar-mobile" role="presentation">
+				<?php echo bp_core_fetch_avatar( array(
+					'type' => 'full',
+				) ); ?>
+			</div>
+			
+			<header class="profile__header">
+				<?php do_action( 'bp_before_member_header_meta' ); ?>
+				
+				<div class="profile__header__text" role="presentation">
+					<h1 class="profile__title profile__header__title"><?php echo esc_html( bp_get_displayed_user_fullname() ); ?></h1>
+					<?php jeremy_author_tools( false, true ); ?>
+				</div>
+				
+				<?php do_action( 'bp_profile_header_meta' ); ?>
 
-                elseif ( bp_is_user_blogs() ) :
-                    bp_get_template_part( 'members/single/blogs'    );
+				<?php do_action( 'bp_member_header_actions' ); ?>
+			</header><!-- .profile__header -->
+			
+			<?php do_action( 'bp_before_member_home_content' ); ?>
+				
+			<?php do_action( 'bp_before_member_body' ); ?>
 
-                elseif ( bp_is_user_friends() ) :
-                    bp_get_template_part( 'members/single/friends'  );
+			<?php if ( bp_is_user_front() ||
+							 ( ! jeremy_bp_is_editor() && bp_is_user_profile() ) ||
+						   bp_current_action() === 'public' ) {
+				// Public Profile ?>
+				<?php bp_displayed_user_front_template_part(); ?>
+			<?php } elseif ( bp_is_user_activity() ) {
+				// Activity Feed
+				bp_get_template_part( 'members/single/activity' );
+			} elseif ( bp_is_user_blogs() ) {
+				// User Blog
+				bp_get_template_part( 'members/single/blogs' );
+			} elseif ( bp_is_user_friends() ) {
+				// Friends List
+				bp_get_template_part( 'members/single/friends' );
+			} elseif ( bp_is_user_groups() ) {
+				// Groups
+				bp_get_template_part( 'members/single/groups' );
+			} else {
+				// Plug-in Pages
+				bp_get_template_part( 'members/single/plugins' );
+			} ?>
 
-                elseif ( bp_is_user_groups() ) :
-                    bp_get_template_part( 'members/single/groups'   );
+			<?php do_action( 'bp_after_member_body' ); ?>
+			
+			<?php do_action( 'bp_after_member_home_content' ); ?>
+			
+			
+ 		<?php get_template_part( 'partials/sidebar', 'profile' ); ?>
+	</article><!-- .main__page -->
+</main><!-- #main -->
 
-                elseif ( bp_is_user_messages() ) :
-                    bp_get_template_part( 'members/single/messages' );
-
-                elseif ( bp_is_user_profile() ) :
-                    bp_get_template_part( 'members/single/profile'  );
-
-                elseif ( bp_is_user_notifications() ) :
-                    bp_get_template_part( 'members/single/notifications' );
-
-                elseif ( bp_is_user_settings() ) :
-                    bp_get_template_part( 'members/single/settings' );
-
-                // If nothing sticks, load a generic template
-                else :
-                    bp_get_template_part( 'members/single/plugins'  );
-
-                endif;
-
-                /**
-                 * Fires after the display of member body content.
-                 *
-                 * @since 1.2.0
-                 */
-                do_action( 'bp_after_member_body' );
-
-                /**
-                 * Fires after the display of member home content.
-                 *
-                 * @since 1.2.0
-                 */
-                do_action( 'bp_after_member_home_content' ); ?>
-
-            </div><!-- .entry-content -->
-        </article><!-- .profile -->
-    </main><!-- #main -->
-</div><!-- #primary -->
-<?php
-get_template_part( 'community/members/sidebar-directory' );
-get_footer();
+<?php get_footer();

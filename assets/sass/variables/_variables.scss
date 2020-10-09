@@ -1,0 +1,212 @@
+/*
+ * SCSS Variables
+ *
+ * Description: Values that get reused across various styles.
+ * Version: 1.0.0
+ * License: GPL 3.0 or later
+ */
+
+/* ---------------------
+ * CONTENTS:
+ * =Colors
+ * =Sizes
+ * =Fonts
+--------------------- */
+
+//* ===== Colors ==== *//
+
+$color__background-screen: #f1f1f1;
+$color__background-hr: #ccc;
+$color__background-button: #e6e6e6;
+$color__background-pre: #eee;
+$color__background-ins: #fff9c0;
+
+$color__text-screen: #21759b;
+$color__text-input: #666;
+$color__text-input-focus: #111;
+$color__text-main: #404040;
+
+$color__border-abbr: #666;
+
+$color__primary: #0e5d56;
+$color__primary-light: #11aba9;
+$color__primary-dark: #486d6d;
+$color__secondary: #1f79e9;
+$color__secondary-hover: lighten(saturate($color__secondary, 17.89), 17.84);
+$color__secondary-light: #9ee6e5;
+$color__secondary-dark: #21508a;
+$color__dark: #141f36;
+$color__white: #fff;
+$color__gray-dark: #747171;
+$color__gray: #ccc;
+$color__gray-light: #f3f3f3;
+
+$color__input: $color__gray-light; // Input background color
+$color__label: rgb(107, 107, 107);
+$color__link-light: #8ca3bf;
+$color__card-border: #f5f5f5;
+$color__input-border: $color__gray; // Input border on focus
+$color__footer-links: #d4f432;
+$color__nav-bg: #f9f9f9;
+
+$color__alert: #e91f53;
+$color__success: #126c3e;
+
+$color__1: #c7f432;
+$color__2: #094f42;
+$color__4: #0c1528;
+
+:root {
+	--color-body: rgb(255, 255, 255);
+	--color-ui: rgb(249, 249, 249); // For UI elements like the nav bar
+	--color-ui-border: rgb(244, 244, 244); // For UI borders or slight contrast
+	--color-1: rgb(199, 244, 50);
+	--color-3: rgb(21, 43, 88);
+	--color-3-opacity: 21, 43, 88;
+	--color-3-text: rgb(210, 210, 210); // Text on Color 3 elements.
+}
+
+.color1-bg {
+	background: var(--color-1);
+}
+
+.color1-links {
+	a {
+		color: var(--color-1);
+	}
+}
+
+.color2-bg {
+	background: $color__2;
+	color: $color__white;
+}
+
+.color3-bg {
+	background: var(--color-3);
+	color: $color__gray;
+}
+
+.color3-overlay {
+	box-shadow: inset 0 0 0 100vmax rgba(var(--color-3-opacity), 0.85);
+	color: var(--color-3-text);
+
+	&[class*="iecp"] {
+		background: var(--color-3);
+	}
+}
+
+.color4-bg {
+	background: $color__4;
+	color: $color__gray;
+}
+
+//* ===== Sizes ==== *//
+
+$size__height-thumbnail: 250px;
+
+$size__padding-site: 4em;
+$size__padding-post: 0;
+
+$size__radius-button: 28px;
+$size__radius-search: 16px;
+
+//* ===== Fonts ==== *//
+
+@font-face {
+	font-family: Bitter;
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src:
+		url("../fonts/Bitter-Regular.woff2") format("woff2"),
+		url("../fonts/Bitter-Regular.woff") format("woff");
+}
+
+@font-face {
+	font-family: Bitter;
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+	src:
+		url("../fonts/Bitter-Italic.woff2") format("woff2"),
+		url("../fonts/Bitter-Italic.woff") format("woff");
+}
+
+@font-face {
+	font-family: Bitter;
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src:
+		url("../fonts/Bitter-Bold.woff2") format("woff2"),
+		url("../fonts/Bitter-Bold.woff") format("woff");
+}
+
+@font-face {
+	font-family: Bitter;
+	font-style: italic;
+	font-weight: 700;
+	font-display: swap;
+	src:
+		url("../fonts/Bitter-Bold-Italic.woff2") format("woff2"),
+		url("../fonts/Bitter-Bold-Italic.woff") format("woff");
+}
+
+@font-face {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: 100;
+	font-display: swap;
+	src:
+		url("../fonts/Inter-ExtraLight.woff2") format("woff2"),
+		url("../fonts/Inter-ExtraLight.woff") format("woff");
+}
+
+@font-face {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: 800;
+	font-display: swap;
+	src:
+		url("../fonts/Inter-Black.woff2") format("woff2"),
+		url("../fonts/Inter-Black.woff") format("woff");
+}
+
+// Heading Font
+@font-face {
+	font-family: Grayfel;
+	font-style: normal;
+	font-weight: 800;
+	font-display: swap;
+	src:
+		url("../fonts/3AA813_0_0.woff2") format("woff2"),
+		url("../fonts/3AA813_0_0.woff") format("woff");
+}
+
+/**
+ * @license
+ * MyFonts Webfont Build ID 3844115, 2019-12-04T15:03:19-0500
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: Grayfel-NorExB by insigne
+ * URL: https://www.myfonts.com/fonts/insigne/grayfel/extra-bold/
+ * Copyright: Copyright 2015 Adobe Systems Incorporated. All rights reserved.
+ * Licensed pageviews: 10,000
+ *
+ *
+ *
+ * © 2019 MyFonts Inc
+*/
+$font__main: bitter, serif;
+$font__headings: grayfel;
+$font__buttons: inter, calibri, sans-serif;
+$font__code: monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+$font__pre: "Courier 10 Pitch", courier, monospace;
+$font__serif: serif;
+$font__line-height-pre: 1.6;
+$font__size-base: 1rem;

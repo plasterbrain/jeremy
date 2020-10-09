@@ -1,0 +1,253 @@
+/*
+ * Typography
+ *
+ * Line-heights, margins, etc. for text on the site.
+ *
+ * Description: Defines the styles for font spacing, mostly.
+ * Version: 1.0.0
+ * License: GPL 3.0 or later
+ */
+
+/* ---------------------
+ * CONTENTS:
+ * =General
+ * =Headings
+ * =Copy
+--------------------- */
+
+/* Use modular scale for heading and other font sizes */
+$modularscale: (
+	base: 0.45 * $font__size-base,
+	ratio: 1.414
+);
+
+//* ===== General ==== *//
+
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+	color: $color__text-main;
+	font-family: $font__main;
+
+	font-size: $font__size-base;
+	line-height: 2;
+}
+
+a {
+	color: $color__secondary;
+
+	&:visited {
+		color: $color__secondary-dark;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: lighten($color__secondary-dark, 20%);
+		}
+	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: lighten($color__secondary, 10%);
+	}
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+
+	&:focus {
+		background-color: $color__background-screen;
+		border-radius: 3px;
+		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+		clip: auto !important;
+		color: $color__text-screen;
+		display: block;
+
+		font-size: 1rem;
+		font-weight: 500;
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: 100000; /* Above WP toolbar. */
+	}
+}
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex="-1"]:focus {
+	outline: 0;
+}
+
+//* ===== Headings ===== *//
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--color-3);
+	font-family: $font__headings;
+	line-height: 1.2;
+}
+
+h1 {
+	font-size: ms(6);
+	font-weight: 800;
+}
+
+h2 {
+	font-size: ms(4);
+}
+
+h3 {
+	font-size: ms(3);
+}
+
+h4 {
+	font-size: ms(2);
+}
+
+h5,
+h6 {
+	font-size: ms(1);
+}
+
+.error-404 h1 {
+	font-size: 9rem;
+}
+
+//* ===== Copy ===== *//
+
+p {
+	line-height: 2.5;
+	margin: 0 0 1rem 0;
+}
+
+abbr,
+acronym {
+	border-bottom: 1px dotted $color__border-abbr;
+	cursor: help;
+}
+
+address {
+	font-style: initial;
+}
+
+big {
+	font-size: 125%;
+}
+
+/* https://codepen.io/jupago/pen/GPxqLX ;T */
+blockquote,
+q {
+	border: 2px solid $color__primary-light;
+	color: lighten($color__text-main, 10%);
+	font-family: $font__buttons;
+	font-size: ms(3);
+	line-height: 1.7;
+	margin: 2rem 2rem 3rem;
+	padding: 1rem;
+	position: relative;
+	text-align: center;
+	background: -webkit-linear-gradient(var(--color-3), $color__primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+	p {
+		margin: 0;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 80px;
+		border: 6px solid $color__white;
+		bottom: -3px;
+		left: 50px;
+		z-index: 2;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		border: 2px solid $color__primary-light;
+		border-radius: 0 50px 0 0;
+		width: 60px;
+		height: 25px;
+		bottom: -25px;
+		left: 40px;
+		border-bottom: none;
+		border-left: none;
+		z-index: 3;
+	}
+}
+
+code,
+kbd,
+tt,
+var {
+	font-family: $font__code;
+
+	font-size: 1rem;
+}
+
+dfn,
+cite,
+i,
+.fancy {
+	color: darken($color__gray-dark, 10%);
+	font-style: italic;
+}
+
+hr {
+	background-color: $color__background-hr;
+	border: 0;
+	height: 1px;
+}
+
+li:not(:last-of-type) {
+	margin-bottom: 0.5rem;
+}
+
+.unstyled-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+mark,
+ins {
+	background: $color__background-ins;
+	text-decoration: none;
+}
+
+pre {
+	background: $color__background-pre;
+	font-family: $font__pre;
+
+	font-size: 1rem;
+	line-height: $font__line-height-pre;
+	margin-bottom: 1.6rem;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.6rem;
+}
+
+table {
+	margin: 1rem 0;
+	width: 100%;
+}

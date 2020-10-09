@@ -1,87 +1,54 @@
-/**
-Theme Name: Jeremy
-Author: Presto Bunny
-Author URI: https://presto.blog/
-Description: A whimsical business directory theme perfect for chambers of commerce.
-Version: 2.0.0
-License: GNU General Public License v3 or later
-License URI: LICENSE
-Text Domain: jeremy
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
-*/
+/*
+ * Jeremy Styles (SCSS)
+ *
+ * Description: Instructions for compiling the various SCSS files into CSS.
+ * Version: 2.0.0
+ * License: GPL 3.0 or later
+ */
 
-/*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-# Normalize
-# Typography
-# Elements
-# Forms
-# Navigation
-	## Breadcrumbs
-	## Menus
-# Accessibility
-# Alignments
-# Clearings
-# Widgets
-# Content
-	## Posts and pages
-	## Comments
-# Infinite scroll
-# Media
-	## Captions
-	## Galleries
---------------------------------------------------------------*/
-@import "variables-site/_variables-site";
-@import "mixins/_mixins-master";
+/* ---------------------
+  * CONTENTS:
+  * =Variables
+  * ==SCSS Variables
+  * ==Mixins
+  * =Layout
+  * ==General Elements
+  * ==Posts and Pages
+  * ==BuddyPress
+  * ==Nav Menus
+  * ==Widgets
+  * =Modules
+  * ==Typography
+  * ==Forms
+  * ==Media
+  * ==Gutenberg Blocks
+  * =Responsive Styles
+ --------------------- */
 
-/*--------------------------------------------------------------
-# Normalize
---------------------------------------------------------------*/
-//@import "normalize";
+@import "variables/variables";
 
-/*--------------------------------------------------------------
-# Typography
---------------------------------------------------------------*/
-@import "typography/typography";
+@import "variables/mixins";
 
-/*--------------------------------------------------------------
-# Elements
---------------------------------------------------------------*/
-@import "elements/elements";
+@import "modules/typography";
 
-/*--------------------------------------------------------------
-# Forms
---------------------------------------------------------------*/
-@import "elements/forms";
+@import "modules/forms";
 
-/*--------------------------------------------------------------
-# Accessibility
---------------------------------------------------------------*/
-@import "modules/accessibility";
+@import "modules/media";
 
-/*--------------------------------------------------------------
-# Social Sharing
---------------------------------------------------------------*/
-@import "modules/social";
+@import "modules/blocks";
 
+@import "layout/general";
 
-/*--------------------------------------------------------------
-# Widgets
---------------------------------------------------------------*/
-@import "site/secondary/widgets";
+@import "layout/posts-and-pages";
 
-/*--------------------------------------------------------------
-# Content
---------------------------------------------------------------*/
-@import "site/site";
+@import "layout/events";
 
-/*--------------------------------------------------------------
-# Infinite scroll
---------------------------------------------------------------*/
-@import "modules/infinite-scroll";
+@import "layout/community";
 
-/*--------------------------------------------------------------
-# Media
---------------------------------------------------------------*/
-@import "media/media";
+@import "layout/menus";
+
+@import "layout/widgets";
+
+@import "layout/responsive";
+
+@import "modules/print";

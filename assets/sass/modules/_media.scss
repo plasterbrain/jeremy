@@ -1,0 +1,227 @@
+/*
+ * Media
+ *
+ * Description: Styles for images, figures, videos, audio, and embedded content.
+ * Version: 1.0.0
+ * License: GPL 3.0 or later
+ */
+
+/* ---------------------
+ * CONTENTS:
+ * =General
+ * =Embeds
+ * =Galleries
+ * =Playlists
+--------------------- */
+
+//* ===== General ==== *//
+
+audio,
+embed,
+figure,
+iframe,
+img,
+object,
+video {
+	max-width: 100%; // Make sure embeds and iframes fit their containers.
+}
+
+audio {
+	display: inline-block;
+	vertical-align: baseline;
+
+	&:not([controls]) {
+		display: none;
+		height: 0;
+	}
+}
+
+figure {
+	margin: 1rem 0;
+}
+
+figure {
+	display: block;
+	margin-bottom: 1.5rem;
+	margin-top: 0;
+
+	figcaption {
+		font-size: 0.8rem;
+		line-height: 1.5;
+		padding: 8px 0 0;
+		text-align: center;
+	}
+
+	&:not(.entry-embed-audio):not(.gallery) {
+		figcaption {
+			margin-bottom: 0;
+			text-align: center;
+		}
+
+		img[class*="wp-image-"] {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+
+img {
+	height: auto; // Make sure images are scaled correctly.
+	max-width: 100%; // Adhere to container width.
+}
+
+a img {
+	border: 0;
+}
+
+a > img {
+	display: block;
+}
+
+svg {
+	&:not(:root) {
+		overflow: hidden;
+	}
+}
+
+.alignleft,
+.alignright {
+	display: inline;
+}
+
+.alignleft {
+	float: left;
+	margin: 0 1.5rem 1.5rem 0;
+}
+
+.alignright {
+	float: right;
+	margin: 0 0 1.5rem 1.5rem;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.custom-logo-link {
+	display: inline-block; // Make sure logo link wraps around logo image.
+}
+
+.wp-smiley {
+	border: none;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+//* ===== Embeds ===== *//
+
+$size__max-embed-height: 500px;
+
+/* For cached and autodiscovered embeds, limit the height and stretch to fit */
+.entry-embed {
+	max-height: $size__max-embed-height;
+
+	iframe {
+		max-height: $size__max-embed-height;
+		width: 100%;
+	}
+}
+
+/* Make the iframe responsive based on 16:9 aspect-ratio. */
+.entry-embed-video {
+	margin-bottom: 1rem;
+}
+
+.entry-embed-audio {
+	display: flex;
+	margin: 0;
+
+	/* Column with audio file info that goes next to the album cover */
+	.audio-column-right {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 100%;
+
+		figcaption {
+			line-height: 0.8;
+			margin: 1rem 0 0 1rem;
+		}
+	}
+}
+
+
+//* ==== Galleries === *//
+
+/* Linked gallery images wrap the entire figure in an anchor */
+.accessible-links .gallery-linked-item,
+.gallery-linked-item {
+	font-weight: initial;
+	text-decoration: none;
+}
+
+.gallery {
+	grid-gap: 2%;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	margin-bottom: 1.5rem;
+
+	.gallery-item {
+		margin-top: 0;
+	}
+
+	.gallery-item-image {
+		max-height: $size__height-thumbnail;
+		-o-object-fit: cover;
+		object-fit: cover;
+		width: 100%;
+	}
+}
+
+.gallery-col-1 {
+	grid-template-columns: 1fr;
+}
+
+.gallery-caption {
+	display: block;
+}
+
+
+//* ==== Playlists === *//
+
+.wp-playlist {
+	flex-wrap: wrap;
+	margin-bottom: 1rem;
+
+	.wp-playlist-current-item {
+		display: flex;
+		align-items: center;
+
+		img {
+			width: 150px;
+		}
+
+		.wp-playlist-caption {
+			margin-left: 1rem;
+
+			.wp-playlist-item-title {
+				font-size: ms(2);
+			}
+
+			.wp-playlist-item-meta {
+				display: block;
+			}
+		}
+	}
+
+	.wp-playlist-tracks {
+		border-top: 0;
+		width: 100%;
+	}
+}

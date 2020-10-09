@@ -1,0 +1,426 @@
+/*
+ * Responsive Styles
+ *
+ * Description: Media queries.
+ * Version: 1.0.0
+ * License: GPL 3.0 or later
+ */
+
+/* ==== Mobile ==== */
+
+$query__small: 512px;
+
+@media screen and (max-width: $query__small - 1px) {
+	body {
+		width: 100%;
+	}
+
+	tr {
+		display: block;
+	}
+
+	td {
+		display: block;
+		clear: both;
+	}
+
+	h1 {
+		font-size: ms(4);
+	}
+
+	.footer__widgets {
+		justify-content: space-around;
+
+		.widget-name {
+			text-align: center;
+		}
+	}
+
+	.dropdown__container {
+		position: relative;
+
+		.nav-dropdown {
+			box-shadow: 1px 1px 12px $color__gray;
+			border: 1px solid $color__gray;
+			left: 50%;
+			position: fixed;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 75%;
+			z-index: 99;
+
+			.nav-dropdown__link {
+				border: 1px solid $color__gray-light;
+				border-bottom: 0;
+				font-size: 1rem;
+			}
+		}
+	}
+
+	.members__list {
+		.members__item__img {
+			display: none;
+		}
+	}
+
+	.nav-social {
+		a {
+			padding: 0.3rem;
+		}
+
+		svg {
+			width: 3rem;
+		}
+	}
+
+	.archive-events__item {
+		.entry__footer {
+			display: block;
+			text-align: center;
+		}
+	}
+}
+
+/* Bigger Mobile */
+// - Flex wraps
+// - Footer widgets collapse
+
+$query__medsmall: 700px;
+
+@media screen and (max-width: $query__medsmall - 1px) {
+	.flex {
+		flex-wrap: wrap;
+	}
+
+	.site__content {
+		padding: 2em 1em;
+	}
+
+	.site__footer {
+		background: var(--color-3);
+	}
+
+	.profile-info {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.profile-cover-img {
+		height: 90px;
+	}
+
+	.profile-meta {
+		h1 {
+			font-size: ms(2);
+		}
+	}
+
+	[class^="widget_"] {
+		max-width: 100%;
+	}
+
+	.button-secondary {
+		font-size: 1rem;
+		padding: 0.3rem 0.5rem;
+	}
+
+	.home__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.archive .main__page {
+		.eo-fullcalendar-loading,
+		.eo-fullcalendar {
+			display: none;
+		}
+	}
+
+	.archive-events__item {
+		.entry__thumb {
+			display: none;
+		}
+
+		.article__container {
+			padding: 0;
+		}
+	}
+
+	.single-event {
+		.entry__meta-date__title {
+			border-bottom: 1px solid $color__gray;
+			color: $color__gray-dark;
+			font-size: 1rem;
+			height: initial;
+			margin: 0 0 1rem;
+			padding: 0.5rem 0;
+			position: relative !important;
+			text-transform: uppercase;
+			width: initial;
+		}
+	}
+
+	.profile__avatar {
+		display: none;
+	}
+}
+
+@media screen and (min-width: $query__medsmall) {
+	.archive-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 48%));
+		grid-gap: 1em;
+	}
+
+	.profile-avatar {
+		left: 20px;
+		position: absolute;
+		top: -90px;
+	}
+
+	.profile__avatar-mobile {
+		display: none;
+	}
+
+	.profile__edit {
+		display: grid;
+		grid-column-gap: 1rem;
+		grid-template-columns: repeat(2, 1fr);
+
+		.profile__edit__field-textarea,
+		.form__submit {
+			grid-column: 1 / span 2;
+		}
+	}
+
+	.profile-meta {
+		margin-left: 190px;
+		min-height: 72px;
+	}
+
+	.member-post-row {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(100px, 49%));
+		grid-gap: 10px;
+
+		img {
+			display: inline;
+			margin-right: 0.1rem;
+			vertical-align: middle;
+		}
+
+		.has-icon {
+			width: 90%;
+		}
+	}
+}
+
+/* ==== Tablets ==== */
+// - Main nav menu collapses
+
+$query__med: 864px;
+
+@media screen and (max-width: $query__med - 1px) {
+	.header__branding {
+		align-items: center;
+		border-bottom: 1px solid $color__gray;
+		display: flex;
+		flex-direction: column;
+
+		.custom-logo-link {
+			padding: 1rem; // Don't let this hug the edges.
+		}
+	}
+
+	.nav-collapse {
+		.nav__item {
+			display: block;
+		}
+	}
+
+	.nav-main__toggle {
+		display: block;
+		line-height: 0;
+		margin: 1rem;
+
+		svg {
+			width: 36px;
+			height: 36px;
+
+			path {
+				fill: $color__gray-dark;
+			}
+
+			&:hover,
+			&:focus,
+			&:active {
+				path {
+					fill: var(--color-3);
+				}
+			}
+		}
+	}
+
+	.nav-main {
+		border-top: 1px solid $color__gray;
+		max-height: 0;
+		overflow: hidden;
+		transition: all 0.2s ease;
+
+		.nav__item-parent {
+			padding: 0;
+
+			button {
+				padding: 1rem;
+				text-align: left;
+				width: 100%;
+			}
+
+			&:not(:last-of-type) {
+				button {
+					padding-bottom: 0;
+				}
+			}
+		}
+
+		.nav__item {
+			&:not(:last-of-type) {
+				padding-bottom: 0;
+			}
+		}
+
+		.nav-main__submenu {
+			max-height: 0;
+			position: static;
+			transition: all 0.2s ease; // close transition
+
+			.nav__item {
+				color: lighten($color__text-main, 20%);
+
+				&::before {
+					content: "—";
+					display: inline;
+					margin-right: 1rem;
+				}
+			}
+		}
+
+		.nav-main__submenu.isopen {
+			max-height: 100vh;
+			transition: all 0.7s ease; // open transition
+		}
+	}
+
+	.nav-main.isopen {
+		max-height: 100vh;
+		transition: all 0.5s ease;
+	}
+}
+
+/* ==== Small Desktop ==== */
+// - Sidebar collapses
+
+$query__large: 1100px;
+
+@media screen and (max-width: $query__large - 1px) {
+	.inner {
+		width: 100%;
+	}
+
+	.flex-wrap-m {
+		flex-wrap: wrap;
+	}
+
+	.alignleft,
+	.alignright {
+		max-width: 40%;
+	}
+
+	.main__page-noflex__footer {
+		order: 3;
+	}
+
+	.sidebar {
+		border-top: 1px dashed gray;
+		padding-top: 7vw;
+	}
+
+	.nav-pagination {
+		margin: $size__padding-site/2 auto;
+	}
+
+	.nav-dropdown {
+		right: 0; // Hopefully prevent this from being cut off
+	}
+}
+
+// - Sidebar is on side of page
+
+@media screen and (min-width: $query__large) {
+	.inner {
+		width: 95%;
+	}
+
+	.site__content {
+		display: flex;
+
+		.main__page {
+			flex: 1;
+			min-width: 0; //Keeps <pre> from screwing up the layout
+			order: 2;
+		}
+
+		.sidebar {
+			order: 1;
+			width: 30%;
+			margin-right: $size__padding-site;
+		}
+	}
+
+	.sidebar,
+	.main__page-noflex__sidebar {
+		border-right: 1px solid lighten($color__gray, 10%);
+		padding-right: 1rem;
+	}
+
+	.main__page-noflex {
+		grid-column-gap: 4em;
+		grid-template-columns: 30% auto;
+
+		.main__page-noflex__sidebar {
+			grid-row: 1 / span 3;
+		}
+	}
+
+	.alignleft,
+	.alignright {
+		max-width: 22vw;
+	}
+
+	.single-event {
+		.site__content {
+			display: block;
+		}
+	}
+
+	.profile-avatar__header {
+
+		.profile-avatar__header__text {
+			flex: 1;
+		}
+
+		img {
+			margin-left: 1rem;
+		}
+	}
+}
+
+/* ==== Large Desktop ==== */
+
+$query__xlarge: 1800px;
+
+@media screen and (min-width: $query__xlarge) {
+	.inner {
+		width: 80%;
+	}
+}

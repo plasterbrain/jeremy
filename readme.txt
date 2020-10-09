@@ -1,27 +1,59 @@
 === Jeremy ===
-Contributors: plasterbrain
-Requires at least: 4.0
-Tested up to: 4.8
+Contributors: prestobunny
+Requires at least: 5.2
+Tested up to: 5.5.2
 Version: 2.0.0
+Requires PHP: 7.0.0
+
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 License: GNU GPL-3.0 or later
+
 Tags: business, directory, geodirectory, members, buddypress, custom background, one sidebar
 
 A playful, modern theme designed for business geodirectories and chambers of commerce.
 
 == Description ==
-Jeremy is designed to integrate seamlessly with [Buddypress](https://buddypress.org/) and [Event Organiser](https://wordpress.org/plugins/event-organiser/) to create a robust business directory and calendar.
+Jeremy is designed to integrate with [Buddypress](https://buddypress.org/) and [Event Organiser](https://wordpress.org/plugins/event-organiser/) to create a robust business directory and event system.
+
+It also has some functionality for:
+- Shariff Wrapper
+- Custom Post Type Widgets
+- The SEO Framework
+
+You do not need a breadcrumbs plug-in with this theme!
+
+= Quirks =
+Jeremy is geared for small business-type users who may not have a lot of experience in authoring web content. As such, featured images/post thumbnails don't feature very heavily in the theme.
 
 == Installation ==
-1. In your admin panel, go to Appearance > Themes and click the Add New button.
+1. In the admin panel, go to Appearance > Themes and click the Add New button.
 2. Click Upload and Choose File, then select the theme's .zip file. Click Install Now.
-3. Anticipate eagerly...
-4. Click Activate to use your new theme.
+3. Click Activate to use your new theme.
 
-== Google Maps ==
-The member geodirectory and the Event Organiser venue maps require a Google Maps [JavaScript API key](https://developers.google.com/maps/documentation/javascript/get-api-key). If you plan on using the profile maps as well, you will need to request an [Embed API key](https://developers.google.com/maps/documentation/embed/get-api-key) for the same project.
+The member geodirectory feature and Event Organiser's venue maps make use of the Google Maps API. You'll need a Google Maps [JavaScript API key](https://developers.google.com/maps/documentation/javascript/get-api-key) for them. If you plan on using the profile maps as well, you will need to request an [Embed API key](https://developers.google.com/maps/documentation/embed/get-api-key) for the same project.
+
+- [BuddyPress WP-CLI tools](https://github.com/buddypress/wp-cli-buddypress)
+- [BuddyPress GDPR data export extension](https://github.com/buddypress/buddypress-data-exporters)
 
 == Changelog ==
 
+= 2.0.0 =
+* Minified stylesheet
+* Enhanced print styles!
+* Events archive now shows a calendar.
+* Content area now only has one sidebar, rather than multiple to separate between page/post widgets. This is to avoid having to duplicate the same widget if you use one for both.
+* Consolidated redundant "page" and "single" templates to "singular"
+* Added wp_body_open() to header.php
+* Removed Event Schema markup generator
+* Member directory can now be searched using the "category" url parameter, which will turn up only members in that category. The old implementation using "search_terms" included members that had the category name (e.g. "restaurants") anywhere in their profile (as in "we provide services for restaurants") regardless of whether they belonged in the category.
+
 = 1.0.0 =
 * Initial release
+
+=== Wishlist ===
+
+* Support for more "social" BuddyPress components (activity, friends, messages, groups, etc.)
+* Support for an arbitrary number of non-featured xProfile fields
+* Gutenberg block styles
+* It'd be nice to switch up some scripts and load the latest version of Fullcalendar.js for Event Organiser pages, as the one that ships with Event Organiser is very old and has nested table-based markup that's super hard to style.
+* Support for non-Google map solutions.

@@ -18,7 +18,7 @@
 	} );
 	wp.customize('copyright', function(value) {
 		value.bind( function( to ) {
-			$( '.copyright' ).text( to );
+			$( '.footer__bottom__copyright' ).text( to );
 		} );
 	} );
 	wp.customize('show_theme_credits', function(value) {

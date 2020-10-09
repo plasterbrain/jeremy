@@ -1,0 +1,132 @@
+/*
+ * General
+ *
+ * Description: Styles for basic HTML elements and site structure.
+ * Version: 1.0.0
+ * License: GPL 3.0 or later
+ */
+
+html {
+	box-sizing: border-box;
+	font-size: 115%;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0 auto;
+	min-height: 100vh;
+}
+
+// IE 11 defaults
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
+	display: block;
+}
+
+footer {
+	clear: both;
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+.hidden {
+	display: none;
+}
+
+.inner {
+	margin: 0 auto;
+}
+
+.site__header {
+	.header__branding {
+		padding: 1em 0;
+	}
+}
+
+.site__content {
+	background: var(--color-body);
+	padding: $size__padding-site 1rem;
+}
+
+.main__page-noflex {
+	display: grid;
+}
+
+.site__footer {
+	background: url("../images/chicago.jpg");
+
+	a {
+		color: $color__footer-links;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: darken($color__footer-links, 20%);
+		}
+	}
+
+	.nav__list a {
+		text-decoration: none;
+	}
+
+	.footer__bottom {
+		align-items: center;
+		font-size: 0.8rem;
+		justify-content: space-between;
+		padding: 1em;
+		text-align: right;
+
+		p {
+			margin: 0;
+		}
+	}
+}
+
+.footer__widgets {
+	label {
+		color: $color__white;
+	}
+
+	section {
+		padding: 1em;
+	}
+}
+
+.page-template-blank {
+	flex-direction: column;
+	max-width: 800px;
+	padding: 2em;
+
+	.page-blank__content {
+		flex: 1;
+	}
+}
+
+.site__footer-mini {
+	font-size: 0.9rem;
+	padding: 1rem 0;
+	text-align: center;
+
+	li:not(:last-of-type) {
+		margin-right: 0.5rem;
+	}
+}

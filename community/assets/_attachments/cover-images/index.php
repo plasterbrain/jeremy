@@ -7,21 +7,20 @@
  * @package Jeremy
  * @subpackage Templates
  */
+?>
 
-bp_attachments_get_template_part( 'uploader' ); ?>
+<div class="bp-cover-image"></div>
+<div class="bp-cover-image-status"></div>
+<div class="bp-cover-image-manage"></div>
 
-<div id="profile-upload-status"></div>
-<div id="profile-upload-cover"></div>
-<div id="profile-upload-manage">
-	<script id="tmpl-profile-cover-delete" type="text/html">
-		<# if ( 'user' === data.object ) { #>
-			<a class="button" id="delete-cover-image" href="#"><?php esc_html_e( 'Delete Cover Image', 'jeremy' ); ?></a>
-		<# } else if ( 'group' === data.object ) { #>
-			<a class="button" id="delete-cover-image" href="#"><?php esc_html_e( 'Delete Group Cover Image', 'jeremy' ); ?></a>
-		<# } else { #>
-			<?php do_action( 'bp_attachments_cover_image_delete_template' ); ?>
-		<# } #>
-	</script>
-</div>
+<?php bp_attachments_get_template_part( 'uploader' ); ?>
 
-<?php do_action( 'bp_attachments_cover_image_main_template' );
+<script id="tmpl-bp-cover-image-delete" type="text/html">
+	<# if ( 'user' === data.object ) { #>
+		<p><a class="button edit" id="bp-delete-cover-image" href="#"><?php esc_html_e( 'Delete My Cover Image', 'buddypress' ); ?></a></p>
+	<# } else if ( 'group' === data.object ) { #>
+		<p><a class="button edit" id="bp-delete-cover-image" href="#"><?php esc_html_e( 'Delete Group Cover Image', 'buddypress' ); ?></a></p>
+	<# } else { #>
+		<?php do_action( 'bp_attachments_cover_image_delete_template' ); ?>
+	<# } #>
+</script>

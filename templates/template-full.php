@@ -1,31 +1,14 @@
 <?php
 /**
  * Template Name: Full Width
- * Description: Removes the sidebar.
+ * 
+ * A page with no sidebar. It does no styling of its own, but sidebar.php
+ * calls {@see is_page_template} to only show content if this template isn't
+ * being used.
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
  * @package Jeremy
+ * @subpackage Templates
+ * @since 1.0.0
  */
 
-get_header(); ?>
-
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-			<?php
-			while ( have_posts() ) : the_post();
-
-				get_template_part( 'template-parts/content', 'page' );
-
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
-
-			endwhile; // End of the loop.
-			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
-get_footer();
+get_template_part( 'singular' ); ?>

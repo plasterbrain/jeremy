@@ -1,0 +1,264 @@
+/*
+ * Widgets
+ *
+ * Description: Styles for built-in widgets.
+ * Version: 1.0.0
+ * License: GPL 3.0 or later
+ */
+
+/* ---------------------
+ * CONTENTS:
+ * =WordPress Widgets
+ * =Event Organiser Widgets
+--------------------- */
+
+//* ======= WP Widgets ======= *//
+
+[class^="widget_"] {
+	font-size: 0.9rem;
+}
+
+.sidebar {
+	[class^="widget_"] {
+		margin-bottom: 2rem;
+
+		select {
+			width: 100%;
+		}
+	}
+}
+
+.footer__widgets {
+	.widget-name {
+		color: $color__white;
+
+		a,
+		a:focus,
+		a:hover {
+			color: $color__white;
+		}
+	}
+
+	.widget_media_image {
+		justify-content: center;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.sidebar,
+.main__page-noflex__sidebar {
+	section {
+		&:not(:last-child) {
+			margin-bottom: 1rem;
+		}
+	}
+
+	.widget-name {
+		border-bottom: 1px solid $color__gray;
+		color: $color__gray-dark;
+		font-size: 1rem;
+		margin: 0 0 1rem;
+		padding: 0.5rem 0;
+		text-transform: uppercase;
+	}
+}
+
+.widget_nav_menu,
+.widget_pages {
+	li {
+		margin-bottom: 0.6rem !important;
+	}
+}
+
+.widget_archives,
+.widget_categories,
+.widget_links,
+.widget_meta,
+.widget_nav_menu,
+.widget_pages,
+.widget_recent_comments,
+.widget_recent_entries,
+.widget_rss {
+	ul,
+	ul.menu {
+		list-style: none;
+		padding: 0;
+	}
+}
+
+.widget_calendar {
+	caption {
+		font-size: 1.3rem;
+		margin-bottom: 0.5rem;
+	}
+
+	td {
+		height: 45px;
+		width: 45px !important;
+	}
+}
+
+.widget_recent_entries {
+	.post-date {
+		display: block;
+	}
+}
+
+.widget_text {
+	img.svg { // Shortcode SVG icons
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	address {
+		p {
+			display: flex;
+		}
+
+		span {
+			margin-left: 0.5rem;
+		}
+	}
+}
+
+.widget_events,
+.widget_recent_comments {
+	ul {
+		margin-top: 0;
+
+		li {
+			border: 1px solid $color__gray-light;
+			border-top: 0;
+			padding: 0.5rem;
+		}
+	}
+}
+
+.widget_recent_comments ul li {
+	display: flex;
+	width: 100%;
+}
+
+#wp-calendar {
+	tbody {
+		text-align: center;
+	}
+}
+
+.widget_rss {
+	.widget-rss__icon__svg {
+		margin-right: 0.5rem;
+
+		path {
+			fill: $color__gray-dark;
+		}
+	}
+}
+
+.widget_media_gallery {
+	.gallery-item {
+		margin: 0;
+	}
+
+	.gallery-caption {
+		display: none;
+	}
+}
+
+.tagcloud {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -0.5rem;
+
+	.tag-cloud-link {
+		background: $color__gray-light;
+		margin: 0.5rem;
+		padding: 0.1rem 0.5rem;
+		text-decoration: none;
+	}
+}
+
+//* ======= EO Widgets ======= *//
+
+.EO_Event_List_Widget { /* stylelint-disable-line */
+	font-size: 0.8rem;
+
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	article {
+		align-items: center;
+		justify-content: space-evenly;
+		padding: 0.5rem 0;
+
+		p {
+			margin: 0;
+		}
+
+		section {
+			flex: 0 0 75%;
+		}
+	}
+
+	.entry-featured {
+		background: var(--color-ui);
+	}
+
+	.entry__meta-time {
+		margin: 0.5rem;
+		padding: 0.5rem;
+		text-align: center;
+
+		.day {
+			margin-top: -7px;
+			font-size: 1.5rem;
+		}
+	}
+}
+
+.eo-widget-cal-wrap {
+	padding: 1rem 0.5rem 0;
+
+	thead {
+		background: lighten($color__card-border, 1%);
+		height: 45px;
+	}
+
+	.eo-event-future {
+		font-weight: 500;
+
+		&:hover,
+		&:focus {
+			background: $color__card-border;
+		}
+	}
+
+	#eo-widget-next-month {
+		text-align: right;
+	}
+}
+
+//* === Custom Post Type Widgets === *//
+
+.widget_recent_entries {
+	a {
+		font-weight: 600;
+	}
+
+	span,
+	time {
+		display: block;
+	}
+
+	.post-date {
+		display: none;
+	}
+
+	.entry__meta-date {
+		color: $color__gray-dark;
+		font-size: 0.8rem;
+	}
+}

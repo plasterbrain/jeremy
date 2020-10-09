@@ -1,1 +1,0 @@
-{"version":3,"sources":["login.scss"],"names":[],"mappings":"AAAA;CACI,qBAAa;CAAb,qBAAa;CAAb,cAAa;CAChB","file":"../../../../sass/login.css","sourcesContent":[".page-login {\r\n    display: flex;\r\n}"]}

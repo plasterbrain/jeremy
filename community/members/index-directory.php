@@ -1,125 +1,144 @@
 <?php
 /**
- * The template for displaying the BuddyPress member directory search results.
+ * BuddyPress - Member Directory
+ * 
+ * The template for displaying the BuddyPress member directory. The layout for
+ * each individual member result is handled by members-loop.php. It may behoove
+ * you to edit a copy of this template in a child theme if you want to adjust
+ * how the member query and URL parameters are set up.
+ * 
+ * @link codex.buddypress.org/developer/loops-reference/the-members-loop
+ *
+ * @TODO Customizer setting for number of members shown per page.
  *
  * @package Jeremy
- * @subpackage Templates
+ * @subpackage BuddyPress
  * @since 1.0.0
+ *
+ * Changelog:
+ * 2.0.0 - "category" query parameter {@see jeremy_bp_cat_filter}
  */
-get_header();
-?>
-<div id="primary" class="content-area">
-	<?php jeremy_breadcrumbs(); ?>
-	<main id="main" class="site-main">
-	<header class="page-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
 
-	<?php
-	/**
-	 * Fires at the top of the members directory template file.
-	 * @since 1.5.0
-	 */
-	do_action( 'bp_before_directory_members_page' );
-	?>
-
-	<?php
-	/**
-	 * Fires before the display of the members list tabs.
-	 *
-	 * @since 1.8.0
-	 */
-	do_action( 'bp_before_directory_members_tabs' ); ?>
-
-	<?php
-	// Get the search term if any
-	$search_msg = null;
-	$search_term = null;
-	if ( isset( $_REQUEST['s'] ) || isset( $_REQUEST['members_search'] ) ) {
-		$search_term = isset( $_REQUEST['s'] ) ? $_REQUEST['s'] : $_REQUEST['members_search'];
-		$search_term = stripcslashes( $search_term );
+// Use "category" parameter to filter the list if it exists.
+$cat_string = jeremy_bp_cat_query();
+if ( isset( $_REQUEST[$cat_string] ) ) {
+	$cat = jeremy_bp_cat_filter( urldecode( $_REQUEST[$cat_string] ) );
+	if ( $cat !== false ) {
+		$cat_term = ucfirst( $_REQUEST[$cat_string] );
 	}
-	// Generate the list of categories, if any
+}
+
+// Setting up a "search results" message
+if ( isset( $_REQUEST['s'] ) ) {
+	$search_term = $_REQUEST['s'];
+} elseif( isset( $_REQUEST['members_search'] ) ) {
+	$search_term = $_REQUEST['members_search'];
+}
+
+if ( isset( $search_term ) ) {
+	if ( isset( $cat_term ) ) {
+		/* translators: %1$s is the category name, %2$s is the search term. */
+		$search_msg = sprintf( __( 'Showing all members in "%1$s" matching "%2$s"', 'jeremy' ), $cat_term, $search_term );
+	} else {
+		/* translators: %s is the search term. */
+		$search_msg = sprintf( __( 'Showing all businesses matching "%s"', 'jeremy' ), $search_term );
+	}
+} elseif ( isset( $cat_term ) ) {
+	$search_msg = sprintf(__( 'Showing all members in "%s"', 'jeremy' ), $cat_term );
+}
+
+get_header(); ?>
+	<?php jeremy_breadcrumbs(); ?>
+	
+	<?php do_action( 'bp_before_directory_members_page' ); ?>
+	
+	<div aria-label="<?php esc_attr_e( 'Members Map', 'jeremy' ); ?>" class="members__map" id="members__map">
+		<?php esc_html_e( "We're having trouble loading the member map. Your browser may have Javascript disabled.", 'jeremy' ); ?>
+	</div>
+	<?php the_title( '<h1 id="page__title" class="page__title">', '</h1>' ); ?>
+
+	<?php do_action( 'bp_before_directory_members_tabs' ); ?>
+	
+	<?php /*== Member Categories ==*/
 	$categories = jeremy_xprofile_get_categories();
-	if ( $categories ) {
-		?>
-		<h3 id="members-cats-title" class="screen-reader-text"><?php printf( _x( 'View by %s', 'Label for list of categories', 'jeremy' ), get_theme_mod( 'bp_profile_category' ) ); ?></h3>
-		<a class="screen-reader-text" href="#members-list">Skip to members list</a>
-		<div class="members-cats profile-subnav" aria-labelledby="members-cats-title">
-			<?php foreach ( $categories as $category ) {
-				if ( $search_term && strtolower( $search_term ) === strtolower( $category->name ) ) {
-					$search_msg = $category->name;
-				}
-				jeremy_bp_the_search_link( $category->name );
-			} ?>
-			<a href="<?php echo bp_get_members_directory_permalink(); ?>" aria-label="Search all members"><?php _ex( 'View All', 'View all members', 'jeremy' ); ?></a>
-		</div>
-	<?php }
-
-	/**
-	 * Fires before the display of the members.
-	 * @since 1.1.0
-	 */
-	do_action( 'bp_before_directory_members' );
-
-	// Generate the heading to show above the members loop.
-	if ( $search_msg ) { ?>
-		<h2><?php printf( _x( 'Showing all members in %s', 'Results of member category search', 'jeremy' ), $search_msg ); ?></h2>
-	<?php }
-	if ( $search_term && ! $search_msg ) {
-		$search_term = esc_html( $search_term ); ?>
-		<h2><?php printf( _x( 'Showing results for search term "%s"', 'Results of member search', 'jeremy' ), $search_term ); ?></h2>
-	<?php }
-	if ( ! $search_term ) { ?>
-		<h2><?php _e( 'Showing all members', 'jeremy' ); ?></h2>
-	<?php }
-
-	/**
-	 * Fires before the display of the members content.
-	 * @since 1.1.0
-	 */
-	do_action( 'bp_before_directory_members_content' ); ?>
-
-	<div id="members-dir-list" class="members dir-list">
+	if ( $categories ) { ?>
+		<section class="members__cats">
+			<header class="members__cats__header">
+				<h2 id="members__cats__title" class="screen-reader-text">
+					<?php /* translators: %s is the name of the category field */
+					echo esc_html( sprintf(
+						__( 'View by %s', 'Label for list of categories', 'jeremy' ), get_theme_mod( 'bp_profile_category' )
+					) ); ?>
+				</h2>
+			</header>
+			<ul class="nav__list nav__list-h">
+				<?php foreach ( $categories as $category ) { ?>
+					<li>
+						<?php echo jeremy_bp_get_search_link( $category->name ); ?>
+					</li>
+				<?php } ?>
+				<li>
+					<a href="<?php echo esc_url( bp_get_members_directory_permalink() ); ?>" aria-label="<?php esc_attr_e( 'View all members', 'jeremy' ); ?>">
+						<?php _ex( 'View all', 'View all members', 'jeremy' ); ?>
+					</a>
+				</li>
+			</ul>
+		</section><!-- .members__cats -->
+	<?php } ?>
+	
+	<form action="" role="search" method="get" class="form-search flex" aria-label="<?php esc_attr_e( 'Member Search', 'jeremy' ); ?>">
+		<label class="screen-reader-text" for="<?php bp_search_input_name(); ?>">
+			<?php esc_html_e( 'Search term', 'jeremy' ); ?>
+		</label>
+		<input
+			type="text"
+			class="search__input"
+			name="<?php echo esc_attr( bp_core_get_component_search_query_arg() ); ?>"
+			id="<?php bp_search_input_name(); ?>"
+			placeholder="<?php echo esc_attr__( 'Search&hellip;', 'jeremy' ); ?>"
+			value="<?php bp_search_placeholder(); ?>" />
+			
+		<button
+		type="submit"
+			class="button button-search"
+			id="<?php echo esc_attr( bp_get_search_input_name() ); ?>_submit" />
+	  	<?php echo jeremy_get_svg( array(
+				'img' 	=> 'form-search',
+				'alt' 	=> esc_attr__( 'Submit', 'jeremy' ),
+				'class' => 'button-search__icon',
+				'inline'=> true,
+			) ); ?>
+	  </button>
+	</form>
+	
+	<?php do_action( 'bp_before_directory_members' ); ?>
+		
+	<h2 class="page__subtitle">
+		<?php if ( isset( $search_msg ) ) { ?>
+			<?php esc_html_e( $search_msg ); ?>
+			<a href="<?php echo esc_url( home_url( $wp->request ) ); ?>"><?php esc_html_e( "(Clear filters)", 'jeremy' ); ?></a>
+		<?php } else { ?>
+			<?php esc_html_e( 'Showing all members', 'jeremy' ); ?>
+		<?php } ?>
+	</h2>
+		
+	<?php do_action( 'bp_before_directory_members_content' ); ?>
+	
+	<div id="members" class="members dir-list" role="presentation">
+		<?php do_action( 'bp_before_members_loop' ); ?>
+		
+		<?php do_action( 'bp_directory_members_content' ); ?>
 		<?php bp_get_template_part( 'members/members-loop' ); ?>
-	</div><!-- #members-dir-list -->
-
-	<?php
-	/**
-	 * Fires and displays the members content.
-	 * @since 1.1.0
-	 */
-	do_action( 'bp_directory_members_content' ); ?>
+		
+		<?php do_action( 'bp_after_members_loop' ); ?>
+		<?php do_action( 'bp_after_directory_members_content' ); ?>
+	</div><!-- #members -->
 
 	<?php wp_nonce_field( 'directory_members', '_wpnonce-member-filter' ); ?>
 
-	<?php
-	/**
-	 * Fires after the display of the members content.
-	 * @since 1.1.0
-	 */
-	do_action( 'bp_after_directory_members_content' ); ?>
+	<?php do_action( 'bp_after_directory_members' ); ?>
 
-	<?php
-	/**
-	 * Fires after the display of the members.
-	 * @since 1.1.0
-	 */
-	do_action( 'bp_after_directory_members' ); ?>
+	<?php do_action( 'bp_after_directory_members_page' ); ?>
+</main><!-- #main -->
 
-	<?php
-	/**
-	 * Fires at the bottom of the members directory template file.
-	 * @since 1.5.0
-	 */
-	do_action( 'bp_after_directory_members_page' );
-	?>
-
-	</main><!-- #main -->
-</div><!-- #primary -->
-
-<?php
-get_template_part( 'community/members/sidebar-directory' );
-get_footer();
-?>
-
+<?php get_footer();

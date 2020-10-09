@@ -1,0 +1,524 @@
+/*
+ * Posts & Pages
+ *
+ * Description: Styles related to post display in archives and singular views.
+ * Version: 1.0.0
+ * License: GPL 3.0 or later
+ */
+
+/* ---------------------
+ * CONTENTS:
+ * =Archives
+ * =Entries (Posts & Pages)
+ * =Pages
+ * =Posts
+ * =Comments
+ * =CPT Archives
+ * =CPT: Deals
+ * =CPT: Job Listings
+--------------------- */
+
+$color__text-term: darken($color__gray-dark, 40%);
+
+.entry__meta-terms {
+	align-items: center;
+}
+
+.entry__meta-terms__item {
+	background: darken($color__gray-light, 5%);
+	border-radius: 1rem;
+	color: $color__text-term;
+	display: inline-block;
+	font-size: 0.8rem;
+	line-height: 2;
+	margin-bottom: 0.5rem;
+	padding: 0.1rem 0.5rem 0;
+	text-decoration: none;
+	font-family: $font__buttons;
+	text-transform: uppercase;
+
+	&:hover,
+	&:focus,
+	&:active {
+		opacity: 0.7; // Lets us "lighten" custom color backgrounds
+		color: $color__text-term;
+	}
+
+	&:visited {
+		color: $color__text-term;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: $color__text-term;
+		}
+	}
+}
+
+.entry__meta-postdate {
+	color: $color__gray-dark;
+	margin: -0.8rem 0 0;
+}
+
+.post__banner {
+	color: $color__gray-dark;
+	text-transform: uppercase;
+
+	svg {
+		margin: 0 0.3rem -0.2rem;
+		width: 19px;
+
+		path {
+			fill: $color__gray-dark;
+		}
+	}
+}
+
+.coolbox {
+	background: var(--color-ui);
+	border: 1px solid $color__gray;
+	padding: 0.5rem;
+}
+
+.home__grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-column-gap: 1rem;
+
+	.entry__excerpt {
+		font-size: 0.8rem;
+	}
+}
+
+//* ======= Archives ======= *//
+
+.archive,
+.profile__section,
+.search {
+	.entry__title,
+	.nav-edit {
+		display: inline;
+	}
+
+	.nav-edit {
+		margin-bottom: -0.25rem;
+		vertical-align: middle;
+	}
+
+	.entry__meta {
+		margin: 1rem 0;
+
+		p {
+			line-height: 1.5;
+			margin: 0;
+
+			&:first-of-type {
+				font-size: 1.1rem;
+			}
+		}
+	}
+}
+
+.archive__meta-button {
+	text-align: right;
+}
+
+//* ======= Entries ======= *//
+
+.entry__excerpt-more {
+	display: block;
+	font-weight: 600;
+	text-align: right;
+
+	&::after {
+		content: "\1f812";
+	}
+}
+
+.single .entry__content {
+	line-height: 1.8;
+}
+
+.entry__meta {
+	align-items: center;
+	color: $color__gray-dark;
+	font-size: 0.9rem;
+	margin: 0 0 2rem;
+
+	.entry__meta-byline {
+		margin: 0;
+	}
+
+	.entry__meta-avatar {
+		margin-right: 0.5rem;
+	}
+}
+
+// Goes before the footer
+.entry__divider {
+	clear: both;
+	margin: 2rem 0 1rem;
+}
+
+// I can't get in and add a class directly to term/cat list output link :T
+.entry__meta-terms__li {
+	a {
+		@extend .entry__meta-terms__item;
+	}
+}
+
+.entry__meta-terms {
+	&:not(:last-of-type) {
+		margin-bottom: 1rem;
+	}
+}
+
+.entry__share {
+	margin-bottom: 3rem;
+
+	.entry__share__title {
+		font-size: ms(4);
+	}
+
+	.shariff {
+		margin: 0 0 1.5rem;
+	}
+
+	.entry__share-link {
+		align-items: center;
+
+		.entry__share-link__label {
+			margin: 0 1rem 0 0;
+		}
+
+		.entry__share-link__form {
+			flex: 1;
+		}
+	}
+}
+
+//* ======= Pages ======= *//
+
+.error-404 {
+	text-align: center;
+
+	.search-form {
+		margin: 2rem auto;
+		max-width: 500px;
+	}
+}
+
+.page-template-login {
+	min-height: 100vh;
+	justify-content: center;
+
+	a {
+		color: $color__link-light;
+	}
+
+	.login__title {
+		color: $color__gray-dark;
+		font-weight: 100;
+	}
+
+	.login__title-logo {
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		height: 120px;
+		text-indent: -9999px;
+	}
+
+	.login__main {
+		align-items: stretch;
+		height: 80%;
+		justify-content: center;
+
+		.login__section {
+			flex: 1;
+			padding: $size__padding-site;
+		}
+
+		.login__section-form {
+			background: $color__white;
+		}
+
+		.login__section-content {
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+		}
+	}
+
+	.login__main,
+	.site__footer-mini {
+		max-width: 1000px;
+		width: 100%;
+	}
+
+	.login__footer {
+		margin-top: 1rem;
+	}
+}
+
+//* ======= Blog Posts ======= *//
+
+.updated:not(.published) {
+	display: none;
+}
+
+.sticky {
+	border: 1px solid var(--color-ui-border);
+	padding: 1rem;
+}
+
+.post {
+	.entry__thumb {
+		background-position: center;
+		background-repeat: no-repeat;
+		height: $size__height-thumbnail;
+		max-height: $size__height-thumbnail;
+	}
+}
+
+// "Posted in:" or "Tagged:"
+.entry__meta-terms__label {
+	font-weight: 600;
+	margin-right: 1rem;
+}
+
+.entry__meta-button {
+	text-align: right;
+}
+
+//* ======= Comments ======= *//
+
+.comment-list {
+	list-style: none;
+	padding: 0;
+
+	.children {
+		list-style: none;
+		padding: 0.5rem 0.8rem 0.5rem;
+		width: 100%;
+
+		.children {
+			padding: 0.5rem 0 0 0.5rem;
+		}
+
+		.depth-2,
+		.depth-3 {
+			&:not(:last-of-type) {
+				padding-bottom: 0.5rem;
+			}
+
+			article {
+				background: #fffdfd;
+				padding: 0.5rem;
+			}
+		}
+	}
+}
+
+.comment {
+	a {
+		word-wrap: break-word;
+	}
+
+	article {
+		display: flex;
+		width: 100%;
+	}
+
+	footer {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	p,
+	time {
+		font-size: 0.8rem;
+	}
+
+	time {
+		color: $color__gray-dark;
+	}
+
+	.comment-moderation {
+		color: $color__alert;
+	}
+
+	.comment-controls {
+		font-size: 0.8rem;
+		margin-bottom: 0.3rem;
+		text-align: right;
+	}
+}
+
+.logged-in-as {
+	display: flex;
+}
+
+.comment-avatar,
+.logged-in-as img {
+	margin-right: 0.5rem;
+}
+
+.comment-avatar,
+.logged-in-as {
+	img {
+		background: $color__white;
+		border: 1px solid $color__gray;
+		padding: 0.2rem;
+	}
+}
+
+.logged-in-as img {
+	height: 36px;
+}
+
+.comment-body {
+	flex: 1;
+}
+
+.comment-form {
+	.form-submit {
+		text-align: right;
+	}
+
+	.comment-form-grid input,
+	#url {
+		width: 100%;
+	}
+
+	.comment-form-grid {
+		display: flex;
+
+		p {
+			flex: 1;
+
+			&:last-of-type {
+				padding-left: 10px;
+			}
+		}
+	}
+}
+
+.comment-respond {
+	padding: 0 10px;
+}
+
+.depth-1 {
+	background: #f9f9f9;
+	border: 1px solid #dedede;
+
+	&:not(:first-child) {
+		margin-top: 1rem;
+	}
+
+	article {
+		padding: 1rem 1rem 0;
+	}
+
+}
+
+.depth-1.single-comment {
+	article {
+		padding: 1rem 1rem 0.5rem;
+	}
+}
+
+//* ======= CPTs ======= *//
+
+.archive-grid__section__header {
+	align-items: center;
+
+	.archive-grid__section__title {
+		font-size: 1rem;
+		margin: 0;
+		text-transform: uppercase;
+	}
+}
+
+//* ======= CPT: Deals ======= *//
+
+$border-coupon: 2px dashed $color__gray;
+
+.single .entry-deal {
+	.entry-deal__coupon {
+		border: $border-coupon;
+		border-top: 0;
+		margin-bottom: 1rem;
+		padding: 1rem;
+	}
+
+	.entry-deal__title {
+		font-size: ms(5);
+		margin: 0 0 1rem;
+	}
+
+	.coolbox {
+		border: $border-coupon;
+		border-bottom-color: $color__gray-light;
+		margin: 0;
+	}
+
+	.entry-deal__img {
+		background-position: top;
+		background-repeat: no-repeat;
+		background-size: contain;
+		margin-right: 2rem;
+	}
+
+	.entry__meta-author {
+		font-size: 1.5rem;
+	}
+
+	.entry__meta__inner {
+		color: $color__text-main;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.entry__meta-code {
+		background: $color__gray-light;
+		border: 3px dashed $color__gray-dark;
+		font-family: monospace;
+		font-size: 2rem;
+		padding: 0 1rem;
+	}
+
+	.entry__meta-fineprint {
+		color: $color__gray-dark;
+		font-size: 0.7rem;
+	}
+
+	.entry-deal__content {
+		flex: 1;
+	}
+}
+
+.tab-deals__item.entry-deal {
+	border: $border-coupon;
+	margin-bottom: 1rem;
+	padding: 1rem;
+
+	.entry-deal__header__inner {
+		align-items: center;
+	}
+
+	.entry__meta-code {
+		font-size: 1rem;
+		margin: 0;
+	}
+}
+
+.bp-user {
+	.entry-deal__title {
+		flex: 1;
+		font-family: $font__main;
+		font-weight: 100;
+	}
+}

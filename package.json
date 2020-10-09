@@ -2,16 +2,23 @@
   "name": "jeremy",
   "version": "2.0.0",
   "description": "Whimsical WordPress business directory theme.",
-  "main": "index.php",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
   "author": "Presto Bunny",
+  "keywords": [
+    "WordPress",
+    "Theme",
+    "Jeremy"
+  ],
+  "homepage": "https://presto.blog",
   "devDependencies": {
+    "@wordpress/eslint-plugin": "^7.1.0",
+    "@wordpress/prettier-config": "^0.3.0",
     "autoprefixer": "^7.1.2",
     "browser-sync": "^2.0.0",
-    "eslint": "^5.15.3",
-    "gulp": "^4.0.0",
-    "gulp-jshint": "^2.1.0",
+    "eslint": "^7.8.1",
+    "gulp": "^4.0.2",
     "gulp-postcss": "^7.0.0",
+    "gulp-readme-to-markdown": "^1.0.1",
     "gulp-rename": "^1.4.0",
     "gulp-rtlcss": "1.0.0",
     "gulp-sass": "^3.1.0",
@@ -24,7 +31,29 @@
     "stylelint-config-wordpress": "^13.1.0"
   },
   "eslintConfig": {
-    "extends": "wordpress"
+    "extends": [
+      "plugin:@wordpress/eslint-plugin/es5"
+    ],
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "jquery": true
+    },
+    "globals": {
+      "index": true,
+      "responsiveNav": true,
+      "ResponsiveNav": true,
+      "addEvent": true,
+      "removeEvent": true,
+      "addClass": true,
+      "removeClass": true,
+      "setAttributes": true,
+      "getChildren": true,
+      "forEach": true,
+      "options": true,
+      "opts": true,
+      "nav": true
+    }
   },
   "stylelint": {
     "extends": "stylelint-config-wordpress/scss",
@@ -53,5 +82,9 @@
         }
       ]
     }
+  },
+  "dependencies": {
+    "gulp-readme-to-markdown": "^0.2.1",
+    "npm": "^6.14.8"
   }
 }
